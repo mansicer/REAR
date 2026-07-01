@@ -1,0 +1,10 @@
+type: pref_verifier
+name: preference_verifier
+
+api_key: ${api_key}
+base_url: ${base_url}
+max_threads: ${max_threads}
+model: ${model_path}
+
+mixed_weight: 20.0
+discount_factor: 1.0  

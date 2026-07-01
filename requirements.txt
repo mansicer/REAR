@@ -1,0 +1,13 @@
+transformers
+datasets
+numpy
+scipy
+tqdm
+pyyaml
+openai
+hydra-core
+math-verify
+vllm
+bs4
+pandas>=2.3.3
+ipykernel>=7.1.0

@@ -1,0 +1,12 @@
+type: generative_rm_server
+
+name: generative_rm_server
+
+base_url: ${base_url}
+api_key: ${api_key}
+model: ${model_path}
+
+temperature: 0.1
+prompt_length: 14336
+max_tokens: ${method.max_tokens}
+max_threads: ${max_threads}

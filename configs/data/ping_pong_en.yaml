@@ -1,0 +1,16 @@
+name: ping_pong_en
+dataset_path: "data/ping-pong-bench/ping_pong_bench.jsonl"
+dataset_split: "train"
+dataset_type: "ping_pong"
+dataset_size: null
+llm_as_a_judge_model: "gpt-4.1"
+num_turns: 4
+
+dataset_identifier: ${data.name}
+
+templates:
+  interrogator_system: "utils/eval_prompts/ping_pong/interrogator_system.jinja"
+  interrogator_user: "utils/eval_prompts/ping_pong/interrogator_user.jinja"
+  player_character: "utils/eval_prompts/ping_pong/en_character.jinja"
+  judge_system: "utils/eval_prompts/ping_pong/judge_system.jinja"
+  judge_user: "utils/eval_prompts/ping_pong/judge_user.jinja"

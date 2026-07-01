@@ -1,0 +1,16 @@
+name: prefeval_explicit
+dataset_path: data/prefeval/explicit_preference_all.jsonl
+dataset_split: test
+dataset_type: prefeval_explicit 
+dataset_size: null
+dataset_start: null
+dataset_end: null
+
+multi_turn_data_path: data/prefeval/filtered_inter_turns.json
+multi_turn_rounds: 0
+
+llm_as_a_judge_model: gpt-4.1
+
+use_reminder: false
+
+dataset_identifier: ${data.name}-turn-${data.multi_turn_rounds}

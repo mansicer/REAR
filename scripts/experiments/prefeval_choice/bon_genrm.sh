@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# BoN w/ GenRM — PrefEval Choice (Qwen/Qwen2.5-7B-Instruct)
+set -e
+cd "$(dirname "$0")/../../.."
+
+python run_eval.py \
+    data=prefeval_choice \
+    method=best_of_n verifier=generative_rm_server \
+    method.n_samples=16 method.temperature=1.0 method.max_tokens=2048 \
+    model_path=Qwen/Qwen2.5-7B-Instruct \
+    exp_name=BoN-GenRM

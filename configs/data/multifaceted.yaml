@@ -1,0 +1,11 @@
+name: multifaceted
+dataset_path: data/multifaceted-bench/multifaceted-bench.jsonl
+dataset_split: train
+dataset_type: multifaceted 
+dataset_size: null
+dataset_start: null
+dataset_end: null
+
+llm_as_a_judge_model: gpt-4.1
+
+dataset_identifier: ${data.name}

@@ -1,0 +1,12 @@
+approach: best_of_n
+name: best_of_n
+
+# search hyper-parameters (common across methods)
+n_samples: 16
+temperature: 1.0
+top_p: 1.0
+max_tokens: 2048
+agg_strategy: mean         # [last, min, mean]
+decoding_strategy: simple  # [simple, cot]
+
+generation_results_path: null

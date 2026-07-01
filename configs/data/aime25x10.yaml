@@ -1,0 +1,11 @@
+name: aime25x10
+dataset_path: data/math/aime25x10.jsonl
+dataset_split: train
+dataset_type: math
+dataset_size: null
+dataset_start: null
+dataset_end: null
+
+with_preference: false
+
+dataset_identifier: ${data.name}-preference-${data.with_preference}

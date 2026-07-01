@@ -1,0 +1,6 @@
+type: rm_server
+name: rm_server
+
+base_url: http://localhost:8000/classify
+model_name_or_path: default
+max_threads: ${max_threads}

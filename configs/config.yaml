@@ -1,0 +1,39 @@
+defaults:
+  - data: prefeval_choice
+  - method: best_of_n
+  - verifier: greedy
+  - _self_
+
+# --- basic settings ---
+base_url: http://localhost:30000/v1
+api_key: EMPTY
+max_threads: ${eval:'128 // ${method.n_samples}'}
+
+# tokenizer / model
+model_name: ${basename:${model_path}}
+model_path: Qwen/Qwen2.5-7B-Instruct
+system_prompt: null
+customized_chat_template: null
+
+# evaluation
+run_eval: true
+eval_only: false
+
+# experiment
+exp_name: debug
+output_dir: outputs/${data.dataset_identifier}/${method.name}/${verifier.name}/${model_name}/${exp_name}
+metric_path: ${output_dir}/metrics.json
+result_path: ${output_dir}/results.jsonl
+
+eval_result_path: null
+generation_results_path: null
+
+dataset_cache_path: data/cache/${basename:${model_path}}/${data.dataset_identifier}.jsonl
+
+# data parallel
+process_id: 0
+num_processes: 1
+
+hydra:
+  run:
+    dir: ${output_dir}/hydra

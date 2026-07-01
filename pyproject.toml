@@ -1,0 +1,28 @@
+[project]
+name = "evaluation-kit"
+version = "0.1.0"
+description = "Evaluation framework for language model search algorithms"
+readme = "README.md"
+requires-python = ">=3.10,<3.12"
+dependencies = [
+    "transformers",
+    "datasets",
+    "numpy",
+    "scipy",
+    "tqdm",
+    "pyyaml",
+    "openai",
+    "hydra-core",
+    "math-verify",
+    "vllm",
+    "bs4",
+    "pandas>=2.3.3",
+    "ipykernel>=7.1.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["models", "search", "utils"]

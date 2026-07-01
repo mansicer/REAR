@@ -1,0 +1,17 @@
+name: prefeval_choice
+dataset_path: data/prefeval/implicit_preference_choice.jsonl
+dataset_split: test
+dataset_type: prefeval_choice 
+dataset_size: 1000
+dataset_start: null
+dataset_end: null
+
+options_data_path: data/prefeval/mcq_options.jsonl
+
+multi_turn_data_path: data/prefeval/filtered_inter_turns.json
+multi_turn_rounds: 0
+
+use_reminder: false
+preference_type: system # system or implicit
+
+dataset_identifier: ${data.name}-${data.preference_type}-turn-${data.multi_turn_rounds}
