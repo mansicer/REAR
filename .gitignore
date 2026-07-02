@@ -7,8 +7,12 @@ CLAUDE.md
 
 # Large benchmark media — reconstructed at setup time, not committed.
 # MMHal-Bench images (~170MB) are downloaded from the URLs in
-# data/mmhal-bench/response_template.json via `python data/mmhal-bench/download_images.py`.
-data/mmhal-bench/images/
+# data/mmhal-bench/response_template.json via `python data/mmhal-bench/download_images.py`,
+# or unzipped from the upstream HF archive. Ignore everything under mmhal-bench
+# (images/, any manual download/staging dirs) except the committed metadata.
+data/mmhal-bench/*
+!data/mmhal-bench/response_template.json
+!data/mmhal-bench/download_images.py
 
 .trash/
 .ossutil_checkpoint/
