@@ -54,15 +54,26 @@ def verifier_rollout_func(llm: OpenAIClient, prompt: str, temperature: float = 0
                 "output_text": res["text"],
             }
             if "logprobs" in res:
-                state.meta_info["result"]["output_top_logprobs"] = []
-                if hasattr(res["logprobs"], 'content') and res["logprobs"].content:
-                    for token_lp in res["logprobs"].content:
-                        if hasattr(token_lp, 'top_logprobs'):
-                            state.meta_info["result"]["output_top_logprobs"].append(
-                                [[tp.logprob, 0, tp.token] for tp in token_lp.top_logprobs]
-                            )
+                otl = []
+                lp_obj = res["logprobs"]
+                # Chat API format: logprobs.content is a list of tokens each with .top_logprobs
+                if hasattr(lp_obj, 'content') and lp_obj.content:
+                    for token_lp in lp_obj.content:
+                        if getattr(token_lp, 'top_logprobs', None):
+                            otl.append([[tp.logprob, 0, tp.token] for tp in token_lp.top_logprobs])
                         else:
-                            state.meta_info["result"]["output_top_logprobs"].append([[token_lp.logprob, 0, token_lp.token]])
+                            otl.append([[token_lp.logprob, 0, token_lp.token]])
+                # Completion API format (vLLM): top_logprobs is a per-position list of
+                # {token: logprob} dicts. Rank each position descending by logprob so the
+                # scorer's top-1/top-2 lookup gets the most likely tokens first.
+                elif getattr(lp_obj, 'top_logprobs', None):
+                    for pos in lp_obj.top_logprobs:
+                        if not pos:
+                            otl.append([])
+                            continue
+                        ranked = sorted(pos.items(), key=lambda kv: kv[1], reverse=True)
+                        otl.append([[lprob, 0, tokstr] for tokstr, lprob in ranked])
+                state.meta_info["result"]["output_top_logprobs"] = otl
             break
         except Exception as e:
             print(f"Attempt {attempt} failed with error: {e}")
